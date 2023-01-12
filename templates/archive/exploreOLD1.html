@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+  {% block content %}
+
+  <section class="upsert">
+    <div class="container-lg">
+      <div class="display-6">
+        Filters
+      </div>
+    </div>
+
+    <div class="container-lg">
+      <form action="/explore" method="post" novalidate>
+        <div class="row gx-1">
+
+
+          <div class="col">
+            <label for="interest">Interest Level</label>
+            <select class="form-select text-primary" name="interest" required onchange="this.form.submit()">
+              <option disabled selected value=""></option>
+              {% for i in ilevels %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="apersonas">Persona</label>
+            <select class="form-select text-primary" name="apersonas" required onchange="this.form.submit()">
+              <option disabled selected value=""></option>
+              {% for i in apersonas %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="ajobs">Job</label>
+            <select class="form-select text-primary" name="ajobs" required onchange="this.form.submit()">
+              <option disabled selected value=""></option>
+              {% for i in ajobs %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="submit">Filters</label>
+            <button type="submit" class="btn btn-secondary">update</button>
+          </div>
+
+        </div><!--row-->
+      </form>
+    </div><!--container-->
+
+  </section>
+  <section>
+    <div class="container-lg">
+      <div class="h4">
+        Startup Information Table
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <!--      <tr class="table__header">    -->
+          <tr>
+            {% for heading in events[0] %}
+            <th class="table-dark">
+              {{ heading }}
+            </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for dict in events %}
+          <!--      <tr class="table__row">     -->
+          <tr>
+            {% for key, value in dict.items() %}
+            <td>
+              {{ value }}
+            </td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {% endblock %}
+
+{% endblock %}

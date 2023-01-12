@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+  {% block content %}
+
+  <section class="upsert">
+    <div class="container-lg">
+      <div class="display-6">
+        Filters
+      </div>
+    </div>
+
+    <div class="container-lg">
+      <form action="/explore" method="post" novalidate>
+        <div class="row gx-1">
+
+
+          <div class="col">
+            <label for="Interest">Interest Level</label>
+            <select class="form-select text-primary" name="Interest">
+              <option disabled selected value=""></option>
+              {% for i in ilevels %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col">
+            <!-- used Persona to match the copied events dataframe column names, but these are Abstracted Personas -->
+            <label for="Persona">Persona</label>
+            <select class="form-select text-primary" name="Persona">
+              <option disabled selected value=""></option>
+              {% for i in apersonas %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="Job">Job</label>
+            <!-- used Job to match the copied events dataframe column names, but these are Abstracted Jobs -->
+            <select class="form-select text-primary" name="Job">
+              <option disabled selected value=""></option>
+              {% for i in ajobs %}
+                <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col d-flex">
+            <!--<label for="submit">Update Filters</label>-->
+            <button type="submit" class="btn btn-secondary align-items-end">Filter</button>
+          </div>
+
+        </div><!--row-->
+      </form>
+    </div><!--container-->
+
+    <div class="container-lg">
+      <div class="lead">
+        Applied Filters: {{ filters }}
+      </div>
+    </div>
+
+  </section>
+
+
+  <!--   TABLE -->
+  <section>
+    <div class="container-lg">
+      <div class="h4">
+        Startup Information Table
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <!--      <tr class="table__header">    -->
+          <tr>
+            {% for heading in events[0] %}
+            <th class="table-dark">
+              {{ heading }}
+            </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for dict in events %}
+          <!--      <tr class="table__row">     -->
+          <tr>
+            {% for key, value in dict.items() %}
+            <td>
+              {{ value }}
+            </td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {% endblock %}
+
+{% endblock %}

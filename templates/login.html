@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <!--
+  <h1>Welcome</h1>
+  -->
+
+  <!-- Hero Image & Tagline -->
+  <section id="welcome">
+    <div class="container-lg">
+
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center text.md.start">
+          <h1>
+
+            <div class="display-2 p-2">
+              Fractory
+            </div>
+
+            <div class="display-6 text-muted d-none d-md-block">
+              my clayton christensen inspired crunchbase
+            </div>
+
+          </h1>
+        </div>
+
+        <div class="col-md-1"></div>
+          <div class="col-md-5 text-center text-md-start align-items-center">
+
+            <div class="display-5 text-muted d-none d-md-block">
+              Welcome Back
+            </div>
+
+            <form action="/login" method="post">
+
+              <div class="form-group">
+                <input type="text" class="form-control" name="email" placeholder="User Email Address"><br>
+              </div>
+
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+
+              <br>
+
+              <div class="form-group">
+                <!-- should the submit button have class="form-control" ? -->
+                <input class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit" value="Log in">
+              </div>
+
+            </form>
+
+            <br>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+{% endblock %}
